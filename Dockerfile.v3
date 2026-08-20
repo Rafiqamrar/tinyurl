@@ -5,7 +5,7 @@ RUN mvn dependency:go-offline
 COPY src src
 RUN mvn package -DskipTests
 
-FROM eclipse-temurin:21.0.5_11-jre-alpine
+FROM eclipse-temurin:21-jre-alpine
 RUN addgroup -S app && adduser -S app -G app
 WORKDIR /app
 COPY --from=builder /build/target/tinyurl-0.1.0.jar app.jar
