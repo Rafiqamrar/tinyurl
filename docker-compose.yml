@@ -1,0 +1,14 @@
+services:
+  tinyurl:
+    build:
+      context: .
+      dockerfile: Dockerfile.v3
+    image: tinyurl:v3
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O-", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 3s
+      start_period: 5s
+      retries: 3
